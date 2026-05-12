@@ -1,6 +1,6 @@
 # FridaLink
 
-**FridaLink** is a Burp Suite extension that brings [Frida](https://frida.re) dynamic instrumentation directly into the Burp workspace for authorized Android mobile penetration testing. Instead of juggling Frida terminals, Python scripts, and Burp simultaneously, FridaLink gives you a single unified panel: live runtime events, an interactive REPL, intercept + modify flows, match-and-replace rules, static APK analysis, MASVS checklist tracking, and PDF report generation — all inside Burp.
+**FridaLink** is a Burp Suite extension that brings [Frida](https://frida.re) dynamic instrumentation directly into the Burp workspace for authorized Android mobile penetration testing. Instead of juggling Frida terminals, Python scripts, and Burp simultaneously, FridaLink gives you a single unified panel: live runtime events, an interactive REPL, intercept + modify flows, match-and-replace rules, static APK analysis, MASVS checklist tracking, and PDF report generation — all inside Burp. Please note that some features may not be fully functional yet — this project is actively being developed, and updates are a work in progress. Expect improvements to stability, aesthetics, and overall smoothness over time.
 
 > **Authorization required.** FridaLink is a professional penetration testing tool. Use it only against applications you are authorized to test.
 
