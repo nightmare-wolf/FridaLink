@@ -1,0 +1,51 @@
+# Gradle build artifacts
+.gradle/
+build/
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+
+# Kotlin / IDE
+.kotlin/
+.idea/
+*.iml
+out/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+.venv/
+venv/
+*.egg
+.eggs/
+
+# Claude Code (project-specific AI assistant config)
+.claude/
+
+# Internal development notes — not for public consumption
+TRANSCRIPT.md
+CLAUDE.md
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Secrets / engagement artifacts — never commit
+*.env
+.env.*
+*.pem
+*.p12
+*.keystore
+secrets/
+engagement/
+
+# Private engagement scripts — kept local, never pushed to the public repo.
+# Only the two generic starter files are tracked by git.
+# Negation rules: ignore all of scripts/, then carve out the two public files.
+scripts/*
+!scripts/COMMUNITY_SCRIPTS.txt
+!scripts/tls/
+scripts/tls/*
+!scripts/tls/ssl_unpin_bypass.js

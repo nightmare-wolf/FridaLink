@@ -1,0 +1,62 @@
+FRIDALINK COMMUNITY SCRIPTS
+============================
+
+This folder ships with one generic script (tls/ssl_unpin_bypass.js).
+The FridaLink community maintains a growing library of ready-made scripts
+for common Android pentesting scenarios.
+
+WHERE TO FIND MORE SCRIPTS
+---------------------------
+
+  Frida CodeShare (community-contributed scripts, searchable by category)
+  https://codeshare.frida.re/
+
+  Awesome Frida (curated list of tools and scripts)
+  https://github.com/dweinstein/awesome-frida
+
+  Frida Official Documentation and Examples
+  https://frida.re/docs/javascript-api/
+
+  objection (runtime mobile exploration toolkit built on Frida)
+  https://github.com/sensepost/objection
+
+  apk-mitm (automates common pinning bypasses without manual scripting)
+  https://github.com/shroudedcode/apk-mitm
+
+
+IMPORTANT: FRIDALINK SYNTAX REQUIREMENT
+-----------------------------------------
+
+Scripts sourced from the internet are written for use with the standard
+Frida CLI (frida -U -l script.js). They will NOT appear in FridaLink's
+Live Feed tab unless their send() calls use the FridaLink event shape.
+
+To make any external script compatible, wrap its send() calls like this:
+
+  // At the top of the script, add this helper:
+  var TAG = 'my_script';
+  function emit(fields) {
+      send(Object.assign({
+          type:          'fridalink_event',   // <-- REQUIRED by FridaLink
+          timestamp:     new Date().toISOString(),
+          thread_id:     String(Process.getCurrentThreadId()),
+          script_source: TAG,
+          severity:      'info',
+      }, fields));
+  }
+
+  // Replace any existing send({...}) calls with:
+  emit({
+      category: 'tls',              // groups events in the Live Feed filter
+      module:   'libssl.so',        // class or library name
+      target:   'SSL_read',         // method or symbol name
+      summary:  'One-liner shown in the Live Feed table',
+  });
+
+Scripts that call send() without type:'fridalink_event' are still loaded
+and executed normally -- their output just appears in the Sidecar Logs tab
+as raw unstructured text rather than in the filterable Live Feed table.
+
+See docs/script-authoring-guide.md for the full field reference and
+copy-paste templates for Java hooks, native hooks, RPC exports, intercept
+candidates, and Match & Replace rule listeners.
